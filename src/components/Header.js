@@ -10,15 +10,20 @@ function Header() {
       <p className="lead text-center">
         Click the table header to toggle names in ascending/descending order.
       </p>
-      <input
-        className="form-control"
-        type="text"
-        placeholder="Default input"
-      ></input>
-
-      <a className="btn btn-primary btn-lg" href="#" role="button">
-        Search
-      </a>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Employee's Name"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        ></input>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">
+            Search
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
