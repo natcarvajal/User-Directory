@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const URL =
-  "https://randomuser.me/api/?results=25&inc=name,picture,email,cell,location";
+  "https://randomuser.me/api/?results=100&inc=picture,name,location,cell,email";
 
 // Export an object with a "search" method that searches the Giphy API for the passed query
 export default {
-  users: function () {
+  getUsers: function () {
     return axios.get(URL);
   },
 };
