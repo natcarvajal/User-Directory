@@ -14,8 +14,11 @@ function SearchForm(props) {
           placeholder="Search for a Gif"
           id="search"
         />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary mt-3">
-          Search
+        <button
+          onClick={props.handleFormSubmit}
+          className="btn btn-primary mt-3"
+        >
+          {props.button_label}
         </button>
       </div>
     </form>

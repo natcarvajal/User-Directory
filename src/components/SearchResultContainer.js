@@ -7,18 +7,15 @@ class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
+    error: "",
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    this.searchEmployees("kittens");
+    API.getUsers()
+      .then((res) => this.setState({ results: res.data.results, search: "" }))
+      .catch((err) => this.setState({ error: err, ...this.state }));
   }
-
-  searchEmployees = () => {
-    API.search()
-      .then((res) => this.setState({ results: res.data.data }))
-      .catch((err) => console.log(err));
-  };
 
   handleInputChange = (event) => {
     const name = event.target.name;
@@ -30,6 +27,9 @@ class SearchResultContainer extends Component {
 
   // When the form is submitted, search the Giphy API for `this.state.search`
   handleFormSubmit = (event) => {
+    // This is where I would filter.
+    // Maybe filter the results by this.state.search
+    // idk ///
     event.preventDefault();
     this.searchEmployees(this.state.search);
   };
@@ -38,11 +38,12 @@ class SearchResultContainer extends Component {
     return (
       <div>
         <SearchForm
-          search={this.state.search}
+          search={this.state.seach}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
+          button_label={this.state.search}
         />
-        <ResultList results={this.state.results} />
+        <ResultList results={this.state.results} value_for_show={"last"} />
       </div>
     );
   }

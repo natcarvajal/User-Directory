@@ -1,16 +1,14 @@
 import React from "react";
-
-
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
-import Dir from "./components/Dir";
+import SearchResultContainer from "./components/SearchResultContainer";
 
 function App() {
   return (
     <>
       <Header />
-      <Dir />
+      <SearchResultContainer />
     </>
   );
 }
