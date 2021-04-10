@@ -7,15 +7,40 @@ class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
+    filteredUsers: [],
     error: "",
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
     API.getUsers()
-      .then((res) => this.setState({ results: res.data.results, search: "" }))
+      .then((res) => {
+        console.log(res.data.results);
+        this.setState({
+          results: res.data.results,
+          search: "",
+          filteredUsers: res.data.results,
+        });
+      })
       .catch((err) => this.setState({ error: err, ...this.state }));
   }
+
+  searchEmployees = () => {
+    var newFilteredUsers;
+    if (!this.state.search) {
+      newFilteredUsers = this.state.results;
+    }
+    newFilteredUsers = this.state.results.filter((user) => {
+      if (user.name.first.toLowerCase() === this.state.search.toLowerCase()) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    console.log(this.state.search);
+
+    this.setState({ filteredUsers: newFilteredUsers });
+  };
 
   handleInputChange = (event) => {
     const name = event.target.name;
@@ -38,12 +63,12 @@ class SearchResultContainer extends Component {
     return (
       <div>
         <SearchForm
-          search={this.state.seach}
+          search={this.state.search}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           button_label={this.state.search}
         />
-        <ResultList results={this.state.results} />
+        <ResultList results={this.state.filteredUsers} />
       </div>
     );
   }
@@ -51,4 +76,4 @@ class SearchResultContainer extends Component {
 
 export default SearchResultContainer;
 
-// value_for_show={"last"} 
+// value_for_show={"last"}
