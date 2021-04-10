@@ -20,7 +20,10 @@ function SearchForm(props) {
         >
           {" "}
           Search
-          {props.handleFormSubmit}
+        </button>{" "}
+        <button onClick={props.handleSort} className="btn btn-primary mt-3">
+          {" "}
+          Sort by Name
         </button>
       </div>
     </form>

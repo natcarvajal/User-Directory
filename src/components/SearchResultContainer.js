@@ -8,6 +8,7 @@ class SearchResultContainer extends Component {
     search: "",
     results: [],
     filteredUsers: [],
+    sortedUsers: false,
     error: "",
   };
 
@@ -59,6 +60,37 @@ class SearchResultContainer extends Component {
     this.searchEmployees(this.state.search);
   };
 
+  handleSort = (event) => {
+    event.preventDefault();
+    var sortArray;
+    if (this.state.sortedUsers === false) {
+      sortArray = this.state.results.sort(function (a, b) {
+        if (a.name.first < b.name.first) {
+          return -1;
+        }
+        if (a.name.first > b.name.first) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      sortArray = this.state.results.sort(function (a, b) {
+        if (a.name.first < b.name.first) {
+          return 1;
+        }
+        if (a.name.first > b.name.first) {
+          return -1;
+        }
+        return 0;
+      });
+    }
+
+    this.setState({
+      results: sortArray,
+      sortedUsers: !this.state.sortedUsers,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -67,6 +99,7 @@ class SearchResultContainer extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           button_label={this.state.search}
+          handleSort={this.handleSort}
         />
         <ResultList results={this.state.filteredUsers} />
       </div>
