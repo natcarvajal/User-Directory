@@ -27,9 +27,6 @@ class SearchResultContainer extends Component {
 
   searchEmployees = () => {
     var newFilteredUsers;
-    if (!this.state.search) {
-      newFilteredUsers = this.state.results;
-    }
     newFilteredUsers = this.state.results.filter((user) => {
       if (user.name.first.toLowerCase() === this.state.search.toLowerCase()) {
         return true;
@@ -37,6 +34,9 @@ class SearchResultContainer extends Component {
         return false;
       }
     });
+    if (!this.state.search) {
+      newFilteredUsers = this.state.results;
+    }
     console.log(this.state.search);
 
     this.setState({ filteredUsers: newFilteredUsers });
