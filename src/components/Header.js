@@ -8,9 +8,6 @@ function Header() {
       <p className="lead text-center">
         Type in search bar below for an employee's name.
       </p>
-      <p className="lead text-center">
-        Click the table header to toggle names in ascending/descending order.
-      </p>
     </div>
   );
 }
