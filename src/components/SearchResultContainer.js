@@ -43,10 +43,12 @@ class SearchResultContainer extends Component {
           handleInputChange={this.handleInputChange}
           button_label={this.state.search}
         />
-        <ResultList results={this.state.results} value_for_show={"last"} />
+        <ResultList results={this.state.results} />
       </div>
     );
   }
 }
 
 export default SearchResultContainer;
+
+// value_for_show={"last"} 

@@ -6,13 +6,18 @@ function ResultList(props) {
       {props.results.length
         ? props.results.map((result) => (
             <li className="list-group-item" key={result.id}>
-              {JSON.stringify(result)}
               <img
                 alt={result.title}
                 className="img-fluid"
                 src={result.picture.large}
               />
-              <p>{result.name[props.value_for_show]}</p>
+
+              <li>
+                Name: {result.name.first} {result.name.last}
+              </li>
+              <li> Address: {result.email}</li>
+              <li> Email: {result.email}</li>
+              <li> Cell: {result.cell}</li>
             </li>
           ))
         : ""}
@@ -21,3 +26,7 @@ function ResultList(props) {
 }
 
 export default ResultList;
+
+// line9: {JSON.stringify(result)}
+
+// [props.value_for_show]
